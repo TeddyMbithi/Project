@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homecare Plumbing Solutions</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Styles -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease-in-out;
+    }
+
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    header {
+      background-color: #004d40;
+      color: white;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header .container {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease-in-out;
+    }
+
+    nav ul li a:hover {
+      color: #003366;
+    }
+
+    #hero {
+      background: url('https://homecaresolutions.co.ke/wp-content/uploads/2023/12/slide3.jpg') no-repeat center center/cover;
+      height: 25vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    #hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    #hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    #hero h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    #hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      background: #003366;
+      border: none;
+      color: #ffffff;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #002244;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    .container {
+      width: 60%;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .service-item {
+      perspective: 1000px;
+    }
+
+    .service-inner {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .service-item:hover .service-inner {
+      transform: rotateY(180deg);
+    }
+
+    .service-front, .service-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .service-front {
+      background: white;
+    }
+
+    .service-back {
+      background: #004d40;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-item img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      width: 100%;
+    }
+
+    footer {
+      background-color: #004d40;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Homecare Plumbing</h1>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="index.html">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="container">
+      <h2>Your Trusted Plumbing Partner</h2>
+      <p>Affordable Plumbing & Sanitary Ware Solutions</p>
+      <a href="#contact" class="btn">Request Service</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-inner">
+            <div class="service-front">
+              <i class="fas fa-wrench fa-2x"></i>
+              <h3>Emergency Plumbing</h3>
+            </div>
+            <div class="service-back">
+              <p>Rapid response for urgent issues like burst pipes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-inner">
+            <div class="service-front">
+              <i class="fas fa-shower fa-2x"></i>
+              <h3>Plumbing Inspections</h3>
+            </div>
+            <div class="service-back">
+              <p>Routine checks to prevent major problems.</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-inner">
+            <div class="service-front">
+              <i class="fas fa-plug fa-2x"></i>
+              <h3>Sewage System Fixing</h3>
+            </div>
+            <div class="service-back">
+              <p>Our sewer line repair service diagnoses and resolves issues like blockages, tree root intrusions, or pipe damage</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-item">
+            <div class="service-inner">
+              <div class="service-front">
+                <i class="fas fa-shower fa-2x"></i>
+                <h3>Drain Flow Restoration</h3>
+              </div>
+              <div class="service-back">
+                <p>Our drain cleaning service ensures your plumbing system remains free from clogs and blockages.</p>
+              </div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-inner">
+              <div class="service-front">
+                <i class="fas fa-shower fa-2x"></i>
+                <h3>Fuel Line Solutions</h3>
+              </div>
+              <div class="service-back">
+                <p>We provide safe and efficient gas line services, including installation, repair, and maintenance</p>
+              </div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-inner">
+              <div class="service-front">
+                <i class="fas fa-shower fa-2x"></i>
+                <h3>Heater Maintenance</h3>
+              </div>
+              <div class="service-back">
+                <p>We provide comprehensive water heater services, including repairs, installations, and routine maintenance.</p>
+              </div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-inner">
+              <div class="service-front">
+                <i class="fas fa-shower fa-2x"></i>
+                <h3>Leak Mitigation</h3>
+              </div>
+              <div class="service-back">
+                <p>We specialize in promptly identifying and repairing leaks to prevent water damage and conserve resources.</p>
+              </div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-inner">
+              <div class="service-front">
+                <i class="fas fa-shower fa-2x"></i>
+                <h3>Plumbing Line Refitting</h3>
+              </div>
+              <div class="service-back">
+                <p>Our pipe replacement service upgrades or replaces old, corroded, or damaged pipes</p>
+              </div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-inner">
+              <div class="service-front">
+                <i class="fas fa-shower fa-2x"></i>
+                <h3>Kitchen Fixture Services</h3>
+              </div>
+              <div class="service-back">
+                <p>Kitchen Fixture Services</p>
+              </div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-inner">
+              <div class="service-front">
+                <i class="fas fa-shower fa-2x"></i>
+                <h3>Bathroom Installations</h3>
+              </div>
+              <div class="service-back">
+                <p>Expert fitting of showers, tubs, toilets and more.</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form action="#">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Homecare Plumbing Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
