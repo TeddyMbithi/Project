@@ -482,6 +482,11 @@
   .fact-item h2 {
     font-size: 28px;
   }
+  #form-message {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
 }
   </style>
 </head>
@@ -707,7 +712,8 @@
   <section id="contact">
     <div class="container">
       <h2>Contact Us</h2>
-      <form action="#">
+      <div id="form-message" style="display: none; text-align: center; margin-bottom: 20px;"></div>
+      <form action="send_email.php" method="POST" id="contact-form">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
@@ -817,6 +823,44 @@
   
     observer.observe(document.querySelector('.fact-container'));
   </script>
+  <script>
+    function countUp(element, target, duration) {
+      // Existing count-up script
+    }
+    // Existing IntersectionObserver code
+  </script>
+  
+  <!-- Contact Form Submission Script -->
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+  
+      const form = this;
+      const formData = new FormData(form);
+      const messageDiv = document.getElementById('form-message');
+  
+      fetch(form.action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        messageDiv.style.display = 'block';
+        messageDiv.style.color = data.status === 'success' ? 'green' : 'red';
+        messageDiv.textContent = data.message;
+  
+        if (data.status === 'success') {
+          form.reset(); // Clear form on success
+        }
+      })
+      .catch(error => {
+        messageDiv.style.display = 'block';
+        messageDiv.style.color = 'red';
+        messageDiv.textContent = 'An error occurred. Please try again.';
+      });
+    });
+  </script>
+  
 </body>
 
 </html>
