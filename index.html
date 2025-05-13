@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="icon" type="image/png" href="img/logo.jpg">
 
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+
   <!-- Styles -->
   <style>
     html {
@@ -270,13 +275,48 @@
     .gallery img {
       width: 100%;
       height: auto;
+      object-fit: cover;
+      aspect-ratio: 3/2;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       transition: transform 0.3s ease;
+      background-color: #f0f0f0; /* Placeholder color while loading */
     }
 
     .gallery img:hover {
       transform: scale(1.05);
+    }
+
+    /* Add loading animation */
+    .gallery img[loading="lazy"] {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
+
+    .gallery img[loading="lazy"].loaded {
+      opacity: 1;
+    }
+
+    /* Responsive image grid */
+    @media (max-width: 1024px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
     }
 
     /* Footer Section */
@@ -488,6 +528,200 @@
   font-size: 16px;
 }
 }
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .container {
+    width: 90%;
+  }
+
+  .service-list {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 5px 10px;
+  }
+
+  #hero h2 {
+    font-size: 32px;
+  }
+
+  #hero p {
+    font-size: 18px;
+  }
+
+  .service-list {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-column {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-copyright {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  #videos video {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .fact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .fact-item i {
+    font-size: 30px;
+  }
+
+  .fact-item h2 {
+    font-size: 28px;
+  }
+
+  #form-message {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  #hero h2 {
+    font-size: 28px;
+  }
+
+  #hero p {
+    font-size: 16px;
+  }
+
+  .service-list {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .fact-item {
+    padding: 15px;
+  }
+
+  .fact-item i {
+    font-size: 24px;
+  }
+
+  .fact-item h2 {
+    font-size: 24px;
+  }
+
+  .fact-item p {
+    font-size: 14px;
+  }
+
+  form input, form textarea {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+
+  #map {
+    height: 300px;
+  }
+
+  #contact .container {
+    width: 95%;
+  }
+
+  .footer-newsletter input {
+    font-size: 16px;
+  }
+
+  .footer-newsletter button {
+    width: 100%;
+  }
+}
+
+/* Fix for mobile menu */
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    padding: 0;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 5px 0;
+  }
+}
+
+/* Fix for service cards on mobile */
+@media (max-width: 768px) {
+  .service-inner {
+    height: 200px;
+  }
+
+  .service-front, .service-back {
+    padding: 15px;
+  }
+
+  .service-front i {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .service-front h3 {
+    font-size: 16px;
+  }
+
+  .service-back p {
+    font-size: 14px;
+  }
+}
   </style>
 </head>
 
@@ -685,26 +919,26 @@
     <div class="container">
       <h2 style="text-align: center;">Our Work Gallery</h2>
       <div class="gallery">
-        <img src="img/1.jpg" alt="Gallery Image 1">
-        <img src="img/6.jpg" alt="Gallery Image 2">
-        <img src="img/23.jpg" alt="Gallery Image 3">
-        <img src="img/4.jpg" alt="Gallery Image 4">
-        <img src="img/7.jpg" alt="Gallery Image 5">
-        <img src="img/8.jpg" alt="Gallery Image 6">
-        <img src="img/13.jpg" alt="Gallery Image 7">
-        <img src="img/3.jpg" alt="Gallery Image 8">
-        <img src="img/15.jpg" alt="Gallery Image 9">
-        <img src="img/18.jpg" alt="Gallery Image 10">
-        <img src="img/5.jpg" alt="Gallery Image 11">
-        <img src="img/12.jpg" alt="Gallery Image 12">
-        <img src="img/9.jpg" alt="Gallery Image 13">
-        <img src="img/10.jpg" alt="Gallery Image 14">
-        <img src="img/16.jpg" alt="Gallery Image 15">
-        <img src="img/17.jpg" alt="Gallery Image 16">
-        <img src="img/20.jpg" alt="Gallery Image 17">
-        <img src="img/21.jpg" alt="Gallery Image 18">
-        <img src="img/22.jpg" alt="Gallery Image 19">
-        <img src="img/2.jpg" alt="Gallery Image 20">
+        <img src="img/1.jpg" alt="Gallery Image 1" loading="lazy" width="300" height="200">
+        <img src="img/6.jpg" alt="Gallery Image 2" loading="lazy" width="300" height="200">
+        <img src="img/23.jpg" alt="Gallery Image 3" loading="lazy" width="300" height="200">
+        <img src="img/4.jpg" alt="Gallery Image 4" loading="lazy" width="300" height="200">
+        <img src="img/7.jpg" alt="Gallery Image 5" loading="lazy" width="300" height="200">
+        <img src="img/8.jpg" alt="Gallery Image 6" loading="lazy" width="300" height="200">
+        <img src="img/13.jpg" alt="Gallery Image 7" loading="lazy" width="300" height="200">
+        <img src="img/3.jpg" alt="Gallery Image 8" loading="lazy" width="300" height="200">
+        <img src="img/15.jpg" alt="Gallery Image 9" loading="lazy" width="300" height="200">
+        <img src="img/18.jpg" alt="Gallery Image 10" loading="lazy" width="300" height="200">
+        <img src="img/5.jpg" alt="Gallery Image 11" loading="lazy" width="300" height="200">
+        <img src="img/12.jpg" alt="Gallery Image 12" loading="lazy" width="300" height="200">
+        <img src="img/9.jpg" alt="Gallery Image 13" loading="lazy" width="300" height="200">
+        <img src="img/10.jpg" alt="Gallery Image 14" loading="lazy" width="300" height="200">
+        <img src="img/16.jpg" alt="Gallery Image 15" loading="lazy" width="300" height="200">
+        <img src="img/17.jpg" alt="Gallery Image 16" loading="lazy" width="300" height="200">
+        <img src="img/20.jpg" alt="Gallery Image 17" loading="lazy" width="300" height="200">
+        <img src="img/21.jpg" alt="Gallery Image 18" loading="lazy" width="300" height="200">
+        <img src="img/22.jpg" alt="Gallery Image 19" loading="lazy" width="300" height="200">
+        <img src="img/2.jpg" alt="Gallery Image 20" loading="lazy" width="300" height="200">
       </div>
     </div>
   </section>
@@ -738,6 +972,14 @@
     </div>
   </section>
 
+  <!-- Map Section -->
+  <section id="map-section">
+    <div class="container">
+      <h2 style="text-align: center;">Our Location</h2>
+      <div id="map" style="height: 400px; width: 100%; margin: 20px 0; border-radius: 10px;"></div>
+    </div>
+  </section>
+
   <div class="footer-container">
     <div class="container">
       <div class="footer-grid">
@@ -745,12 +987,10 @@
           <h4>Address</h4>
           <p><i class="fa fa-map-marker-alt me-3"></i>Garden Estate, Kiambu road</p>
           <p><i class="fa fa-phone-alt me-3"></i>07-69-622-652</p>
-          <p><i class="fa fa-envelope me-3"></i>kamititech@gmail.com</p>
+          <p><i class="fa fa-envelope me-3"></i>kamititechsolutions@gmail.com</p>
           <div class="footer-social">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/kamititech" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@kamititech" target="_blank"><i class="fab fa-tiktok"></i></a>
           </div>
         </div>
         <div class="footer-column">
@@ -779,6 +1019,26 @@
       </div>
     </div>
   </div>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+  <!-- Map Initialization Script -->
+  <script>
+    // Initialize the map
+    const map = L.map('map').setView([-1.2921, 36.8219], 15); // Coordinates for Garden Estate, Kiambu road
+
+    // Add the tile layer (OpenStreetMap)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Add a marker for your location
+    const marker = L.marker([-1.2921, 36.8219]).addTo(map);
+    marker.bindPopup("<b>KamitiTech Solutions Limited</b><br>Garden Estate, Kiambu road").openPopup();
+  </script>
 
   <!-- WhatsApp and Call Icons -->
 <div class="fixed-icons">
@@ -851,6 +1111,28 @@
         messageDiv.style.display = 'block';
         messageDiv.style.color = 'red';
         messageDiv.textContent = 'An error occurred. Please try again.';
+      });
+    });
+  </script>
+
+  <script>
+    // Add this script at the end of your body tag
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle lazy loading images
+      const images = document.querySelectorAll('.gallery img[loading="lazy"]');
+      
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.classList.add('loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      images.forEach(img => {
+        imageObserver.observe(img);
       });
     });
   </script>
